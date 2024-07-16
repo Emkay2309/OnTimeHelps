@@ -1,5 +1,6 @@
 import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import CategoryCard from '../categories/cards';
 
 const HomeScreen = ({ navigation }: any) => {
   return (
@@ -11,6 +12,7 @@ const HomeScreen = ({ navigation }: any) => {
         }} 
         title='Nav' color={'pink'} 
       />
+      <CategoryCard  />
     </SafeAreaView>
   )
 }

@@ -10,7 +10,7 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
     return (
         <Tab.Navigator
-            initialRouteName="Feed"
+            initialRouteName="Home"
             screenOptions={{
                 tabBarActiveTintColor: '#e91e63',
                 headerShown : false

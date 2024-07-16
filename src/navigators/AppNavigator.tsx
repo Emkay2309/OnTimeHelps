@@ -7,6 +7,7 @@ import HomeScreen from '../screens/home';
 import DrawerNavigator from './DrawerNavigator';
 import CartScreen from '../screens/cart';
 import TabNavigator from './TabNavigator';
+import CategoryListScreen from '../screens/categories';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -29,6 +30,7 @@ const AppNavigator = () => {
       <Stack.Screen name='Draw' component={DrawerNavigator} />
       <Stack.Screen name='Tab' component={TabNavigator} />
       <Stack.Screen name='Cart' component={CartScreen} />
+      {/* <Stack.Screen name='CategoryList' component={CategoryListScreen}/> */}
     </Stack.Navigator>
   );
 };
