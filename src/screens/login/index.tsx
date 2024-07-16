@@ -16,14 +16,14 @@ const Login: FC<LoginScreenProps> = ({ navigation }) => {
     };
 
     const handleLogin = () => {
-        navigation.navigate('Home')
+        navigation.navigate('Tab')
         setText('');
         console.log('login btn clicked');
     }
 
     const validationSchema = yup.object({
-        email: yup.string().required('email is required'),
-        password: yup.string().required('password is required'),
+        email: yup.string().required('email is required').email('Enter a valid email'),
+        password: yup.string().required('password is required').min(6, 'Password must be at least 6 characters long'),
     });
 
 
@@ -31,13 +31,15 @@ const Login: FC<LoginScreenProps> = ({ navigation }) => {
         <SafeAreaView style={styles.container}>
             <KeyboardAvoidingView behavior={'padding'}>
                 <ScrollView contentContainerStyle={styles.scrollView}>
+
+                    <Formik 
+                        initialValues={{email : '' , pasword : ''}}
+                        onSubmit={(value)=>console.log(value)}
+                        validationSchema={validationSchema}
+                    >
                     <View style={styles.pcontainer} >
-                        <Text style={styles.container}>Welcome Back</Text>
-                        <Text style={styles.cred}>Enter Your Credential to login</Text>
-
-                        
-
-
+                        <Text style={styles.container}>NeoStore</Text>
+                        {/* <Text style={styles.cred}>Enter Your Credential to login</Text> */}
 
                             <View>
                                 <InputBox icon='email' label='Email' />
@@ -57,6 +59,7 @@ const Login: FC<LoginScreenProps> = ({ navigation }) => {
 
                         <Text style={[styles.accttxt, { color: '#9B29B1', fontWeight: 'bold', marginStart: '3%' }]} > { }</Text>
                     </View>
+                    </Formik>
                 </ScrollView>
             </KeyboardAvoidingView>
         </SafeAreaView>
@@ -65,12 +68,13 @@ const Login: FC<LoginScreenProps> = ({ navigation }) => {
 
 
 
-export default Login
+export default Login;
 
 const styles = StyleSheet.create({
     pcontainer: {
         alignContent: 'center',
-        marginTop: '10%'
+        marginTop: '35%',
+        marginLeft : 18
     },
     container: {
         textAlign: 'center',
