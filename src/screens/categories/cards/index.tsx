@@ -1,28 +1,36 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
-type CategoryCardProps = {
-    navigation: NavigationProp<any>;
-};
+export const dataArray: string[] = ['Tables', 'Chairs', 'Sofas', 'Beds'];
+const images = [
+    'https://example.com/tables.jpg',
+    'https://example.com/chairs.jpg',
+    'https://example.com/sofas.jpg',
+    'https://example.com/beds.jpg'
+];
 
-const data: string[] = ['Tables', 'Chairs', 'Sofas', 'Beds'];
+const CategoryCard = () => {
+    const navigation = useNavigation<NavigationProp<any>>();
 
-const CategoryCard: React.FC<CategoryCardProps> = ({ navigation }) => {
     const handleQuery = (i: number) => {
-        console.log(i + 1);
-        navigation.navigate('CategoryListScreen', { categoryId: i + 1 });
+        console.log(i );
+        navigation.navigate('CategoryListScreen', { categoryId: i });
     };
 
     return (
         <View style={styles.container}>
-            {data.map((item, i) => (
+            {dataArray.map((item, i) => (
                 <TouchableOpacity
                     key={i}
                     style={styles.catContainer}
                     onPress={() => handleQuery(i + 1)}
                 >
-                    <Text style={styles.text}>{item}</Text>
+                    <ImageBackground source={{ uri: images[i] }} style={styles.image} imageStyle={{ borderRadius: 10 }}>
+                        <View style={styles.overlay} />
+                        <Text style={styles.text}>{item}</Text>
+                    </ImageBackground>
                 </TouchableOpacity>
             ))}
         </View>
@@ -31,26 +39,38 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'grey',
         padding: 10,
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        height: 420,
     },
     catContainer: {
-        backgroundColor: '#DD4A25',
         width: '48%',
-        height: '48%',
+        height: 200,
         marginBottom: 10,
+        borderRadius: 10,
+        overflow: 'hidden',
+        elevation: 5, // Adds shadow effect on Android
+        shadowColor: '#000', // Adds shadow effect on iOS
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+    },
+    image: {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 10,
+    },
+    overlay: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     text: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#fff',
         textAlign: 'center',
-        color: 'lightpink',
-        fontSize: 16,
+        position: 'absolute',
     },
 });
 

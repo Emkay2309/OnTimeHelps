@@ -7,7 +7,10 @@ import HomeScreen from '../screens/home';
 import DrawerNavigator from './DrawerNavigator';
 import CartScreen from '../screens/cart';
 import TabNavigator from './TabNavigator';
-import CategoryListScreen from '../screens/categories';
+import CategoryCard from '../screens/categories/cards';
+import CategoryListScreen from '../screens/categories/CateogoryListScreen';
+import ProductScreen from '../screens/product';
+import { ProductType } from '../redux/apis/type';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -16,6 +19,9 @@ export type RootStackParamList = {
   Onboard: undefined;
   Home: undefined;
   Draw: undefined;
+  CategoryList: undefined;
+  ProductScreen : {product : ProductType}
+  CategoryListScreen: { categoryId : number } 
 };
 
 const AppNavigator = () => {
@@ -30,7 +36,9 @@ const AppNavigator = () => {
       <Stack.Screen name='Draw' component={DrawerNavigator} />
       <Stack.Screen name='Tab' component={TabNavigator} />
       <Stack.Screen name='Cart' component={CartScreen} />
-      {/* <Stack.Screen name='CategoryList' component={CategoryListScreen}/> */}
+      <Stack.Screen name='CategoryList' component={CategoryCard}/>
+      <Stack.Screen name='ProductScreen' component={ProductScreen} />
+      <Stack.Screen name='CategoryListScreen' component={CategoryListScreen} />
     </Stack.Navigator>
   );
 };
