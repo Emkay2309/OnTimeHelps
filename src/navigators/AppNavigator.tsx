@@ -13,7 +13,7 @@ import ProductScreen from '../screens/product';
 import { ProductType } from '../redux/apis/type';
 
 export type RootStackParamList = {
-  Splash: undefined;
+  Splash: undefined ;
   Login: undefined;
   Signup: undefined;
   Onboard: undefined;

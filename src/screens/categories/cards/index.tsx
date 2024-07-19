@@ -14,7 +14,7 @@ const images = [
 const CategoryCard = () => {
     const navigation = useNavigation<NavigationProp<any>>();
 
-    const handleQuery = (i: number) => {
+    const handleQuery = (i : number) => {
         console.log(i );
         navigation.navigate('CategoryListScreen', { categoryId: i });
     };

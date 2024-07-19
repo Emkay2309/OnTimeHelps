@@ -7,7 +7,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 
 
 
-const CategoryList= ({ route ,navigation} : StackScreenProps<RootStackParamList,'CategoryList'> ) => {
+const CategoryList = ({ route ,navigation} : StackScreenProps<RootStackParamList,'CategoryList'> ) => {
     const index = route.params.id.toString();
     const { data, error, isLoading } = useGetProductByCategoryQuery(index);
 
