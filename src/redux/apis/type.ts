@@ -13,6 +13,6 @@ export interface ProductType {
 }
 
 export interface ProductListResponse {
-    data: ProductType[];
+    data : ProductType[];
     
 }

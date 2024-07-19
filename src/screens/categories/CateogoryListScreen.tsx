@@ -52,6 +52,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = ({ route }) => {
     return (
         <View style={styles.container}>
             <View><Text style={styles.title}>{dataArray[categoryId - 1]}</Text></View>
+            <View style={{flex:1,}}>
             <FlatList
                 data={data?.data}
                 keyExtractor={(item) => item.id.toString()}
@@ -74,6 +75,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = ({ route }) => {
                     </TouchableOpacity>
                 )}
             />
+            </View>
         </View>
     );
 };
