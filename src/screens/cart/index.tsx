@@ -3,10 +3,17 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { cart, decreaseItemQuantity, increaseItemQuantity, removeFromCart } from '../../redux/slicers/cartSlice';
 import { styles } from './style';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 
 
 const CartScreen = () => {
+  const navigation = useNavigation<NavigationProp<any>>();
+
+  const handleBuy = () => {
+    navigation.navigate('AddressList')
+  }
+
   const dispatch = useDispatch();
 
   const cartslice = useSelector(cart);
@@ -25,10 +32,11 @@ const CartScreen = () => {
     dispatch(removeFromCart(i));
   }
 
+
   return (
     <View style={styles.container}>
       <Text style={styles.titleText}>CartScreen</Text>
-      <View style={{ flex: 1, marginBottom:5 }}>
+      <View style={{ flex: 1, marginBottom: 5 }}>
         <FlatList
           data={cartList}
           keyExtractor={(item) => item.id.toString()}
@@ -64,19 +72,31 @@ const CartScreen = () => {
           )}
         />
       </View>
-      <View style={styles.cartDetailContainer}>
-        <View>
-          <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10 }}>Cart Details:</Text>
-          <Text>Total Items: {cartslice.totalQuantity}</Text>
-          <Text style={{ fontWeight: '600', fontSize: 15 }}>Total Price: $ {cartslice.totalPrice}</Text>
-        </View>
-        <TouchableOpacity style={styles.removeItem}
-          onPress={() => { }}
-        >
-          <Text style={styles.btnText}>Buy Now</Text>
-        </TouchableOpacity>
-      </View>
 
+      {
+        cartList.length > 0 ? (
+          <View style={styles.cartDetailContainer}>
+            <View>
+              <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10 }}>Cart Details:</Text>
+              <Text>Total Items: {cartslice.totalQuantity}</Text>
+              <Text style={{ fontWeight: '600', fontSize: 15 }}>Total Price: $ {cartslice.totalPrice}</Text>
+            </View>
+
+            <TouchableOpacity style={styles.removeItem}
+              onPress={() => handleBuy()}
+            >
+              <Text style={styles.btnText}>Buy Now</Text>
+            </TouchableOpacity>
+
+          </View>
+        ) : 
+        (
+          <View style={{marginBottom : 300}}>
+
+            <Text style={{fontSize : 30}}>Cart is empty</Text>
+          </View>
+        )
+      }
     </View>
   )
 }

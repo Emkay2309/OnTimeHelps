@@ -13,8 +13,7 @@ export const myApi = createApi({
         }),
         getProductById : builder.query<ProductListResponse, number>({
             query : (id) => `products/getDetail=${id}`,
-        }),
-        
+        }), 
     }),
 })
 

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, cart } from '../../redux/slicers/cartSlice';
 import {styles} from './categoryListStyle'
 
+
 type CategoryListScreenProps = {
     route: RouteProp<{ params: { categoryId: number } }, 'params'>;
 };
@@ -49,6 +50,11 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = ({ route }) => {
         navigation.navigate('Cart', { product: product });
     }
 
+    // const handleShare = async () => {
+    //     const shareResponse = await Share.open(options);
+        
+    // }
+
     return (
         <View style={styles.container}>
             <View><Text style={styles.title}>{dataArray[categoryId - 1]}</Text></View>
@@ -69,6 +75,9 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = ({ route }) => {
                                 </View>
                                 <TouchableOpacity style={styles.btn} onPress={()=>handleAddProduct(item)}>
                                     <Text style={styles.btnText}>Add to cart</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity style={styles.btn} onPress={()=>{}}>
+                                    <Text style={styles.btnText}>Share</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>

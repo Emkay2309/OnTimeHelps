@@ -7,7 +7,7 @@ interface CartItem extends ProductType {
 }
 
 interface CartState {
-  cart : CartItem[];
+  cart : CartItem [];
   totalQuantity : number;
   totalPrice : number;
 }
@@ -36,7 +36,8 @@ const cartSlice = createSlice({
 
       // Update total quantity and price
       state.totalQuantity += 1;
-      state.totalPrice += action.payload.cost; // Assuming cost is a property of ProductType
+      // Assuming cost is a property of ProductType
+      state.totalPrice += action.payload.cost; 
     },
 
     removeFromCart: (state, action: PayloadAction<number>) => {
@@ -47,7 +48,8 @@ const cartSlice = createSlice({
         const itemToRemove = state.cart[itemToRemoveIndex];
         state.totalQuantity -= itemToRemove.quantity;
         state.totalPrice -= itemToRemove.cost * itemToRemove.quantity;
-        state.cart.splice(itemToRemoveIndex, 1); // Remove item from cart array
+        // Remove item from cart array
+        state.cart.splice(itemToRemoveIndex, 1); 
       }
     },
 

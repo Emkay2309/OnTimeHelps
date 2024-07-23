@@ -40,7 +40,6 @@ const Login: FC<LoginScreenProps> = ({ navigation }) => {
                     <View style={styles.pcontainer} >
                         <Text style={styles.container}>NeoStore</Text>
                         {/* <Text style={styles.cred}>Enter Your Credential to login</Text> */}
-
                             <View>
                                 <InputBox icon='email' label='Email' />
                             </View>

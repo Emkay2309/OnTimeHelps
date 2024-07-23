@@ -2,13 +2,16 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
+import { chairsIcon, sofasIcon, bedsIcon,tablesIcon } from '../../../assets/images/Home/icons'
 
-export const dataArray: string[] = ['Tables', 'Chairs', 'Sofas', 'Beds'];
+
+export const dataArray: string [] = ['Tables', 'Chairs', 'Sofas', 'Beds'];
+
 const images = [
-    'https://example.com/tables.jpg',
-    'https://example.com/chairs.jpg',
-    'https://example.com/sofas.jpg',
-    'https://example.com/beds.jpg'
+    chairsIcon,
+    tablesIcon, 
+    sofasIcon,
+    bedsIcon,
 ];
 
 const CategoryCard = () => {
@@ -27,9 +30,9 @@ const CategoryCard = () => {
                     style={styles.catContainer}
                     onPress={() => handleQuery(i + 1)}
                 >
-                    <ImageBackground source={{ uri: images[i] }} style={styles.image} imageStyle={{ borderRadius: 10 }}>
+                    <ImageBackground source={images[i] } style={styles.image} imageStyle={{ borderRadius: 10 }}>
                         <View style={styles.overlay} />
-                        <Text style={styles.text}>{item}</Text>
+                        {/* <Text style={styles.text}>{item}</Text> */}
                     </ImageBackground>
                 </TouchableOpacity>
             ))}
@@ -50,8 +53,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         borderRadius: 10,
         overflow: 'hidden',
-        elevation: 5, // Adds shadow effect on Android
-        shadowColor: '#000', // Adds shadow effect on iOS
+        
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.3,
         shadowRadius: 5,
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
     },
     overlay: {
         ...StyleSheet.absoluteFillObject,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        // backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     text: {
         fontSize: 18,

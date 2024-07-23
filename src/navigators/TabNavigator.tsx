@@ -30,7 +30,7 @@ const TabNavigator = () => {
                 name="Order"
                 component={OrderScreen}
                 options={{
-                    tabBarLabel: 'Updates',
+                    tabBarLabel: 'Order',
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="bell" color={color} size={size} />
                     ),
