@@ -48,6 +48,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = ({ route }) => {
     const handleAddProduct = (product: ProductType) => {
         dispatch(addToCart(product));
         navigation.navigate('Cart', { product: product });
+        
     }
 
     // const handleShare = async () => {

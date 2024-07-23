@@ -1,14 +1,24 @@
-import {  SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import CategoryCard from '../categories/cards';
 import Carasoul from './carousols';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-const HomeScreen = ({ navigation }: any) => {
+
+const HomeScreen = () => {
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 40 }}>HomeScreen</Text>
+      <View style={styles.header}>
+        <View style={{}}>
+          <Text style={{ fontSize: 40 }}>HomeScreen</Text>
+        </View>
+
+        <TouchableOpacity>
+          <FontAwesome name='search' size={30} style={{     marginTop: 14, marginLeft: 30}} />
+        </TouchableOpacity>
+      </View>
       <Carasoul />
-      <CategoryCard  />
+      <CategoryCard />
     </SafeAreaView>
   )
 }
@@ -16,7 +26,10 @@ const HomeScreen = ({ navigation }: any) => {
 export default HomeScreen
 
 const styles = StyleSheet.create({
-  contianer : {
+  contianer: {
 
   },
+  header: {
+    flexDirection: 'row',
+  }
 })

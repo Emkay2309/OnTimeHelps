@@ -8,8 +8,8 @@ import { chairsIcon, sofasIcon, bedsIcon,tablesIcon } from '../../../assets/imag
 export const dataArray: string [] = ['Tables', 'Chairs', 'Sofas', 'Beds'];
 
 const images = [
+    tablesIcon,
     chairsIcon,
-    tablesIcon, 
     sofasIcon,
     bedsIcon,
 ];

@@ -1,14 +1,8 @@
 import React, { useRef } from 'react';
-import {
-    StyleSheet,
-    View,
-    Dimensions,
-    ImageBackground,
-    Animated,
-} from 'react-native';
+import { View, ImageBackground,Animated,} from 'react-native';
 import { s1, s2, s3, s4 } from '../../../assets/images/Carosols/carosol';
 
-const { width } = Dimensions.get('window');
+import { styles } from './styles';
 
 const images = [s1, s2, s3, s4];
 
@@ -23,7 +17,6 @@ const Carasoul = () => {
 
     return (
         <View style={styles.container}>
-            
             <Animated.FlatList
                 data={images}
                 horizontal
@@ -40,29 +33,5 @@ const Carasoul = () => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding : 1
-    },
-    header: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
-    itemContainer: {
-        width,
-        height: 300, // Adjust the height as needed
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    image: {
-        width: '100%',
-        height: '100%',
-        resizeMode: 'cover',
-    },
-});
 
 export default Carasoul;
