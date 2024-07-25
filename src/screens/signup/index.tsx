@@ -1,68 +1,82 @@
-import React, { FC } from "react";
-import { KeyboardAvoidingView, SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import React, { FC, useState } from "react";
+import { KeyboardAvoidingView, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import { SignupScreenProps } from "./types";
-
+import { useAppDispatch } from "../../redux/store/type";
+import { registerUser } from "../../redux/slicers/authslicer/actions";
+import LinearGradient from "react-native-linear-gradient";
+import InputBox from "../../components/Inputbox";
 
 
 const Signup: FC<SignupScreenProps> = ({ navigation }) => {
-    const handleclick = () => {
-        navigation.navigate("Login");
+    const [user, setUser] = useState({
+        first_name: 'John',
+        last_name: 'Doe',
+        email: 'john.doe@gmail.com',
+        password: 'Abcd@1234',
+        confirm_password: 'Abcd@1234',
+        gender: 'M',
+        phone_no: '9123456789',
+    });
+
+    const [selectedGender, setSelectedGender] = useState<'male' | 'female'>('male');
+    const dispatch = useAppDispatch();
+    const handleclick = async () => {
+        await dispatch(registerUser(user)).unwrap();
+        navigation.navigate("Logins");
     };
+
 
     return (
         <SafeAreaView style={styles.maincontainer}>
-            <KeyboardAvoidingView behavior={'padding'}>
+            <LinearGradient
+                colors={['#613338', '#613338', '#3D2749']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={styles.gradient}
+            >
+                <KeyboardAvoidingView behavior={'padding'}>
+                    <ScrollView contentContainerStyle={styles.scrollView}>
+                        <View style={styles.pcontainer} >
+                            <Text style={styles.container}>Sign up</Text>
+                            <Text style={styles.cred}>Create your account</Text>
+                            <InputBox icon="email" placeholder="First Name" label={undefined} />
+                            <InputBox icon="email" placeholder="Last Name" label={undefined} />
+                            <InputBox icon="email" placeholder="Email" label={undefined} />
+                            <InputBox icon="lock" placeholder="Password" label={undefined} isPassword={true} />
+                            <InputBox icon="lock" placeholder="Confirm Password" label={undefined} isPassword={true} />
+                            <View style={styles.genderContainer}>
+                                <TouchableOpacity
+                                    style={styles.radioButton}
+                                    onPress={() => setSelectedGender('male')}
+                                >
+                                    <View style={styles.radioCircle}>
+                                        {selectedGender === 'male' && <View style={styles.selectedRb} />}
+                                    </View>
+                                    <Text style={styles.radioText}>Male</Text>
+                                </TouchableOpacity>
 
+                                <TouchableOpacity
+                                    style={styles.radioButton}
+                                    onPress={() => setSelectedGender('female')}
+                                >
+                                    <View style={styles.radioCircle}>
+                                        {selectedGender === 'female' && <View style={styles.selectedRb} />}
+                                    </View>
+                                    <Text style={styles.radioText}>Female</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <InputBox icon="email" placeholder="Phone Number" label={undefined} />
 
-                <ScrollView contentContainerStyle={styles.scrollView}>
-                    <View style={styles.pcontainer} >
-                        <Text style={styles.container}>Sign up</Text>
-                        <Text style={styles.cred}>Create your account</Text>
-                        <View style={styles.username} >
-                            <TextInput style={{ paddingLeft: 20 }}
-                                placeholder="Username"
-                            />
+                            <TouchableOpacity onPress={()=>{}} style={styles.logincontainer}>
+                                <Text style={styles.logintxt}>Signup</Text>
+                            </TouchableOpacity>
+
+                            <Text>Already have an account</Text>
                         </View>
-                        <View style={styles.username} >
-                            <TextInput style={{ paddingLeft: 20 }}
-                                placeholder="Email"
-                            />
-                        </View>
-                        <View style={styles.pssd} >
-                            <TextInput style={{ paddingLeft: 20 }}
-                                placeholder="Password"
-                            />
-                        </View>
-                        <View style={styles.pssd} >
-                            <TextInput style={{ paddingLeft: 20 }}
-                                placeholder="Confirm Password"
-                            />
-                        </View>
-                        <View style={styles.pssd} >
-                            <TextInput style={{ paddingLeft: 20 }}
-                                placeholder="Password"
-                            />
-                        </View>
-                        <View style={styles.pssd} >
-                            <TextInput style={{ paddingLeft: 20 }}
-                                placeholder="Confirm Password"
-                            />
-                        </View>
-                        <View style={styles.logincontainer}>
-                            <Text style={styles.logintxt}>Sign up</Text>
-                        </View>
-                        <Text style={styles.ortxt}>or</Text>
-                        <View style={styles.signwithgooglecontainer}>
-                            <Text style={[styles.logintxt, { color: '#AA4EB8' }]}>Sign In with Google</Text>
-                        </View>
-                        <View style={styles.signuptxtcontainer} >
-                            <Text style={styles.accttxt} >Already have an account?</Text>
-                            <Text onPress={handleclick} style={[styles.accttxt, { color: '#9B29B1', fontWeight: 'bold', marginStart: '3%' }]} >Login</Text>
-                        </View>
-                    </View>
-                </ScrollView>
-            </KeyboardAvoidingView>
+                    </ScrollView>
+                </KeyboardAvoidingView>
+            </LinearGradient>
         </SafeAreaView>
     )
 
@@ -74,12 +88,15 @@ const styles = StyleSheet.create({
     maincontainer: {
         flex: 1,
     },
+    gradient: {
+        flex: 1,
+    },
     scrollView: {
         justifyContent: 'center',
+        marginLeft: 30,
     },
     pcontainer: {
         alignContent: 'center',
-        marginTop: '10%'
     },
     container: {
         textAlign: 'center',
@@ -94,64 +111,61 @@ const styles = StyleSheet.create({
         color: '#898989',
         marginTop: '2%'
     },
-    username: {
-        width: '80%',
-        backgroundColor: '#F0E4F2',
-        borderRadius: 10,
-        alignSelf: 'center',
-        marginTop: '3%',
-        height: 50,
-        justifyContent: 'center'
+    genderContainer: {
+        flexDirection: 'row',
+        marginLeft: 30,
     },
-    pssd: {
-        width: '80%',
-        backgroundColor: '#F0E4F2',
+    radioButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginRight: 30,
         borderRadius: 10,
-        alignSelf: 'center',
-        marginTop: '3%',
-        height: 50,
-        justifyContent: 'center'
+        height: 40,
+        width: 100,
+        borderColor: 'black',
+        borderWidth: 1,
+        alignContent: 'center',
+        backgroundColor: '#574c5c',
+        marginTop: 10
+    },
+    radioCircle: {
+        height: 20,
+        width: 20,
+        borderRadius: 10,
+        borderWidth: 2,
+        borderColor: '#ff6f91',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 10,
+        marginLeft: 10
+    },
+    selectedRb: {
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        backgroundColor: '#ff6f91',
+
+    },
+    radioText: {
+        fontSize: 16,
+        color: '#ffffff',
+
     },
     logincontainer: {
-        width: '75%',
-        backgroundColor: '#9B29B1',
+        width: 300,
+        backgroundColor: '#ba4f77',
         borderRadius: 20,
-        marginTop: '5%',
-        alignSelf: "center",
-        height: 50
+        marginTop: 10, 
+        height: 50,
+        justifyContent: 'center',
+        marginLeft : 25,
+        
     },
     logintxt: {
         textAlign: 'center',
-        margin: 10, color: 'white',
-        fontSize: 20, fontWeight: 'bold'
-    },
-    ortxt: {
-        alignSelf: 'center',
-        marginTop: '3%',
-        fontSize: 18,
+        color: 'white',
+        fontSize: 20,
         fontWeight: 'bold',
-        color: '#7A7A7A'
-    },
-    signuptxtcontainer: {
-        width: '70%',
-        alignSelf: 'center',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginTop: '8%'
-    },
-    accttxt: {
-        fontSize: 18,
-        color: '#666666',
-        fontWeight: '500'
-    },
-    signwithgooglecontainer: {
-        width: '75%',
-        borderColor: '#9B29B1',
-        borderRadius: 20,
-        marginTop: '5%',
-        alignSelf: "center",
-        height: 50,
-        borderWidth: 2
     },
 
 

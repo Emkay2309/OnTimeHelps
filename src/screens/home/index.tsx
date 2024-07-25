@@ -7,7 +7,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const HomeScreen = () => {
   return (
-    <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <SafeAreaView style={[{ flex: 1, justifyContent: 'center', alignItems: 'center' },]}>
       <View style={styles.header}>
         <View style={{}}>
           <Text style={{ fontSize: 40 }}>HomeScreen</Text>
@@ -26,10 +26,11 @@ const HomeScreen = () => {
 export default HomeScreen
 
 const styles = StyleSheet.create({
-  contianer: {
-
+  container: {
+    backgroundColor : 'red'
   },
   header: {
     flexDirection: 'row',
+    
   }
 })

@@ -14,5 +14,20 @@ export interface ProductType {
 
 export interface ProductListResponse {
     data : ProductType[];
-    
+}
+
+export interface LoginType {
+    email : string , 
+    password : string
+}
+
+export interface SignupType {
+    first_name	: string,
+    last_name	: string,
+    email	: string,
+    password	: string,
+    confirm_password	: string,
+    gender	: string,
+    phone_no	: string,
+
 }

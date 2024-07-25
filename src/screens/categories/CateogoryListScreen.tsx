@@ -1,11 +1,11 @@
 import React from 'react';
-import { ActivityIndicator, FlatList, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
 import { NavigationProp, RouteProp, useNavigation } from '@react-navigation/native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { useGetProductByCategoryQuery } from '../../redux/apis/api';
 import { dataArray } from '../categories/cards';
 import { ProductType } from '../../redux/apis/type';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addToCart, cart } from '../../redux/slicers/cartSlice';
 import {styles} from './categoryListStyle'
 
@@ -48,7 +48,10 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = ({ route }) => {
     const handleAddProduct = (product: ProductType) => {
         dispatch(addToCart(product));
         navigation.navigate('Cart', { product: product });
-        
+    }
+
+    const handleShare = (product : ProductType) => {
+
     }
 
     // const handleShare = async () => {
@@ -77,7 +80,7 @@ const CategoryListScreen: React.FC<CategoryListScreenProps> = ({ route }) => {
                                 <TouchableOpacity style={styles.btn} onPress={()=>handleAddProduct(item)}>
                                     <Text style={styles.btnText}>Add to cart</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={styles.btn} onPress={()=>{}}>
+                                <TouchableOpacity style={styles.btn} onPress={()=>handleShare(item)}>
                                     <Text style={styles.btnText}>Share</Text>
                                 </TouchableOpacity>
                             </View>

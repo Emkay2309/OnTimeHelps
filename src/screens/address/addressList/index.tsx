@@ -55,7 +55,7 @@ const AddressList = () => {
                 keyExtractor={(item, index) => index.toString()}
             />
             <TouchableOpacity style={styles.btn} onPress={() => {}}>
-                <Text style={styles.btnText}>Add to cart</Text>
+                <Text style={styles.btnText}>Buy now</Text>
             </TouchableOpacity>
         </View>
     );

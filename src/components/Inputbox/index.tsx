@@ -1,35 +1,41 @@
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from 'react-native'
-import React, { FunctionComponent, useState } from 'react'
-import { InputsProps } from './types'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+// InputBox.js
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { FunctionComponent, useState } from 'react';
+import { InputsProps } from './types';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
+interface ExtraInputProps {
+    icon?: string;
+    label?: string;
+    isPassword?: boolean;
+    error?: string | false | undefined;
+}
 
-const InputBox: FunctionComponent<InputsProps> = ({ icon, label, isPassword, ...props }) => {
-    const [bg, setBg] = useState<string>('lightyellow');
+const InputBox: FunctionComponent<InputsProps & ExtraInputProps> = ({ icon, label, isPassword, error, ...props }) => {
+    const [bg, setBg] = useState<string>('#574c5c');
     const [hidden, setHidden] = useState<boolean>(true);
 
     const handleFocus = () => {
         props?.onFocus;
-        setBg('pink');
-    }
+        setBg('#2e202d');
+    };
 
     const handleBlur = () => {
         props?.onBlur;
-        setBg('lightyellow');
-    }
+        setBg('#574c5c');
+    };
 
     const handleIcon = () => {
         setHidden(!hidden);
-    }
+    };
 
     return (
-
         <View style={styles.container}>
             <View style={styles.labelContainer}>
                 <Text style={styles.label}>{label}</Text>
             </View>
             <View style={styles.inputContainer}>
-                <MaterialCommunityIcons name={icon} size={30} color={'black'} style={styles.iconLogo}/>
+                <MaterialCommunityIcons name={icon} size={30} color={'black'} style={styles.iconLogo} />
                 <TextInput
                     {...props}
                     style={[{ backgroundColor: bg }, props.style, styles.textInput]}
@@ -37,36 +43,34 @@ const InputBox: FunctionComponent<InputsProps> = ({ icon, label, isPassword, ...
                     onBlur={handleBlur}
                     secureTextEntry={isPassword && hidden}
                 />
-            </View>
-            {
-                isPassword && (
-                    <TouchableOpacity onPress={handleIcon}>
+                {isPassword && (
+                    <TouchableOpacity onPress={handleIcon} style={styles.eyeIcon}>
                         <MaterialCommunityIcons name={hidden ? 'eye-off' : 'eye'} size={30} color={'black'} />
                     </TouchableOpacity>
-                )
-            }
+                )}
+            </View>
+            {error && <Text style={styles.errorText}>{error}</Text>}
         </View>
-    )
-}
+    );
+};
 
-export default InputBox
+export default InputBox;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'column'
+        flexDirection: 'column',
     },
-    labelContainer : {
+    labelContainer: {
         marginLeft: 28,
     },
-    inputContainer : {
-
+    inputContainer: {
+        position: 'relative',
     },
     label: {
         fontSize: 20,
         fontWeight: 'bold',
-        width : 100
-
+        width: 100,
     },
     iconLogo: {
         position: 'absolute',
@@ -74,7 +78,7 @@ const styles = StyleSheet.create({
         zIndex: 1,
         borderRightWidth: 1,
         paddingRight: 10,
-        marginLeft: 30
+        marginLeft: 30,
     },
     textInput: {
         height: 60,
@@ -88,7 +92,19 @@ const styles = StyleSheet.create({
         paddingRight: 55,
         width: 320,
         fontSize: 16,
-        marginHorizontal: 25
-    }
-
-})
+        marginHorizontal: 25,
+        color : 'white'
+    },
+    eyeIcon: {
+        position: 'absolute',
+        right: 20,
+        top: 15,
+        
+    },
+    errorText: {
+        color: 'red',
+        fontSize: 14,
+        marginTop: 5,
+        marginLeft: 30,
+    },
+});

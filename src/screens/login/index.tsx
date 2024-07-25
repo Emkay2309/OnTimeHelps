@@ -1,5 +1,5 @@
 import React, { FC, useContext, useState } from "react";
-import { KeyboardAvoidingView, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Image, KeyboardAvoidingView, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { LoginScreenProps } from "./types";
 import InputBox from "../../components/Inputbox";
@@ -39,7 +39,7 @@ const Login: FC<LoginScreenProps> = ({ navigation }) => {
                     >
                     <View style={styles.pcontainer} >
                         <Text style={styles.container}>NeoStore</Text>
-                        {/* <Text style={styles.cred}>Enter Your Credential to login</Text> */}
+                        
                             <View>
                                 <InputBox icon='email' label='Email' />
                             </View>

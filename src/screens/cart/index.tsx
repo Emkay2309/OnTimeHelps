@@ -6,7 +6,6 @@ import { styles } from './style';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 
-
 const CartScreen = () => {
   const navigation = useNavigation<NavigationProp<any>>();
 
@@ -89,13 +88,12 @@ const CartScreen = () => {
             </TouchableOpacity>
 
           </View>
-        ) : 
-        (
-          <View style={{marginBottom : 300}}>
-
-            <Text style={{fontSize : 30}}>Cart is empty</Text>
-          </View>
-        )
+        ) :
+          (
+            <View style={{ marginBottom: 300 }}>
+              <Text style={{ fontSize: 30 }}>Cart is empty</Text>
+            </View>
+          )
       }
     </View>
   )
