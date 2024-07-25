@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%', 
-        paddingHorizontal: 25, 
+        paddingHorizontal: 15, 
     },
     welcomeContainer: {
         alignItems: 'center',
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     },
     inputWrapper: {
         width: '100%',
-        marginBottom: 80,
+        marginBottom: 90,
     },
     logincontainer: {
         width: 200,

@@ -25,7 +25,10 @@ const Signup: FC<SignupScreenProps> = ({ navigation }) => {
         await dispatch(registerUser(user)).unwrap();
         navigation.navigate("Logins");
     };
-
+    
+    const handleLogin = () => {
+        navigation.navigate("Logins");
+    }
 
     return (
         <SafeAreaView style={styles.maincontainer}>
@@ -40,8 +43,8 @@ const Signup: FC<SignupScreenProps> = ({ navigation }) => {
                         <View style={styles.pcontainer} >
                             <Text style={styles.container}>Sign up</Text>
                             <Text style={styles.cred}>Create your account</Text>
-                            <InputBox icon="email" placeholder="First Name" label={undefined} />
-                            <InputBox icon="email" placeholder="Last Name" label={undefined} />
+                            <InputBox icon="account" placeholder="First Name" label={undefined} />
+                            <InputBox icon="account" placeholder="Last Name" label={undefined} />
                             <InputBox icon="email" placeholder="Email" label={undefined} />
                             <InputBox icon="lock" placeholder="Password" label={undefined} isPassword={true} />
                             <InputBox icon="lock" placeholder="Confirm Password" label={undefined} isPassword={true} />
@@ -66,13 +69,16 @@ const Signup: FC<SignupScreenProps> = ({ navigation }) => {
                                     <Text style={styles.radioText}>Female</Text>
                                 </TouchableOpacity>
                             </View>
-                            <InputBox icon="email" placeholder="Phone Number" label={undefined} />
+                            <InputBox icon="phone" placeholder="Phone Number" label={undefined} />
 
                             <TouchableOpacity onPress={()=>{}} style={styles.logincontainer}>
                                 <Text style={styles.logintxt}>Signup</Text>
                             </TouchableOpacity>
 
-                            <Text>Already have an account</Text>
+                            <TouchableOpacity style={styles.login} onPress={handleLogin}>
+                            <Text style={styles.cred} >Already have an account?</Text>
+                            <Text style={styles.cred} >LOGIN</Text>
+                            </TouchableOpacity>
                         </View>
                     </ScrollView>
                 </KeyboardAvoidingView>
@@ -93,7 +99,7 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         justifyContent: 'center',
-        marginLeft: 30,
+        marginLeft: 20,
     },
     pcontainer: {
         alignContent: 'center',
@@ -144,7 +150,6 @@ const styles = StyleSheet.create({
         height: 10,
         borderRadius: 5,
         backgroundColor: '#ff6f91',
-
     },
     radioText: {
         fontSize: 16,
@@ -155,10 +160,10 @@ const styles = StyleSheet.create({
         width: 300,
         backgroundColor: '#ba4f77',
         borderRadius: 20,
-        marginTop: 10, 
+        marginTop: 20, 
         height: 50,
         justifyContent: 'center',
-        marginLeft : 25,
+        marginLeft : 28,
         
     },
     logintxt: {
@@ -167,6 +172,10 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
     },
-
+    login : {
+        flexDirection : 'row',
+        justifyContent : 'space-evenly',
+        
+    }
 
 });

@@ -3,12 +3,17 @@ import React from 'react'
 import CategoryCard from '../categories/cards';
 import Carasoul from './carousols';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Header from '../../components/header/Header';
+import LinearGradient from 'react-native-linear-gradient';
 
 
 const HomeScreen = () => {
   return (
     <SafeAreaView style={[{ flex: 1, justifyContent: 'center', alignItems: 'center' },]}>
+      <LinearGradient colors={['#613338', '#613338', '#3D2749']} style={styles.gradient}>
+
       <View style={styles.header}>
+        <Header />
         <View style={{}}>
           <Text style={{ fontSize: 40 }}>HomeScreen</Text>
         </View>
@@ -19,6 +24,7 @@ const HomeScreen = () => {
       </View>
       <Carasoul />
       <CategoryCard />
+      </LinearGradient>
     </SafeAreaView>
   )
 }
@@ -31,6 +37,9 @@ const styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
+    
+  },
+  gradient : {
     
   }
 })

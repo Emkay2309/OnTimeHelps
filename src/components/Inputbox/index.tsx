@@ -85,8 +85,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 10,
         borderColor: 'black',
-        marginVertical: 3,
-        marginBottom: 10,
+        
         padding: 15,
         paddingLeft: 65,
         paddingRight: 55,
@@ -97,7 +96,7 @@ const styles = StyleSheet.create({
     },
     eyeIcon: {
         position: 'absolute',
-        right: 20,
+        right: 40,
         top: 15,
         
     },

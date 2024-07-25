@@ -58,8 +58,9 @@ const styles = StyleSheet.create({
     },
     heading: {
         fontSize: 30,
-        fontWeight: '900',
+        fontWeight: '500',
         marginBottom : 10,
+        color : 'white'
     },
     btn: {
         marginTop: 30,
